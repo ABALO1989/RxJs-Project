@@ -10,6 +10,18 @@
             [(ngModel)]='listFilter'/>
         </div>
       </div>
+      <div class='row'>
+        <div class='col-md-2'>Filter for Ranking</div>
+        <div class='col-md-4'>
+        <select class="form-select" aria-label="Default select example"
+        [(ngModel)]="listFilterRanking">
+          <option value="0"> Select One Option </option>
+          <option *ngFor='let option of options'>
+            {{option}}
+          </option>
+        </select>
+      </div>
+      </div>
     <div class="table">
       <thead>
         <tr>
@@ -22,13 +34,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let movie of movies$ | async ">
+        <tr *ngFor="let movie of movies$ | async | filterPipe: listFilter ">
           <th>{{ movie.id }}</th>
           <th>{{ movie.rank }}</th>
           <th>{{ movie.title }}</th>
           <th>{{ movie.year }}</th>
           <th>
-            <img [src]="movie.image" />
+            <img [src]="movie.image"  [style.width.px]='imageWidth'/>
           </th>
           <th>{{ movie.imDbRating }}</th>
         </tr>

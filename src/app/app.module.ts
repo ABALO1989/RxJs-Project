@@ -8,9 +8,11 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MoviesComponent } from './movies/movies.component';
 import { FilterPipe } from './shared/filter.pipe';
+import { FilterRankingPipe } from './shared/filterRanking.pipe';
+
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, MoviesComponent, FilterPipe],
+  declarations: [AppComponent, HomeComponent, MoviesComponent, FilterPipe, FilterRankingPipe],
   imports: [
     BrowserModule,
     HttpClientModule,

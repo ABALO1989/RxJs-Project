@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { catchError, map, Observable, tap, throwError } from 'rxjs';
 
-import { Iapi, Imovie  } from './movie';
+import { Iapi } from './movie';
 
 
 
@@ -12,7 +12,12 @@ import { Iapi, Imovie  } from './movie';
 })
 export class MovieService {
 
-  private moviesUrl = 'https://ingenia.app/aleja/movies.json';
+  private moviesUrl = 'https://imdb-api.com/en/API/Top250Movies/k_dwqzf26o';
+  
+  // headers = new HttpHeaders()
+  // .set('X-RapidAPI-Host','usa-jobs-for-it.p.rapidapi.com')
+  // .set('X-RapidAPI-Key','7bed4810b1mshaf7ff9fd2b3bc9fp16d2e4jsnba4a06b499a1')
+
 
   constructor(private http: HttpClient) { }
 
