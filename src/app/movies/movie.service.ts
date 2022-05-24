@@ -12,7 +12,7 @@ import { Iapi, Imovie  } from './movie';
 })
 export class MovieService {
 
-  private moviesUrl = 'https://imdb-api.com/en/API/Top250Movies/k_dwqzf26o';
+  private moviesUrl = 'https://ingenia.app/aleja/movies.json';
 
   constructor(private http: HttpClient) { }
 
