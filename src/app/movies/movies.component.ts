@@ -12,10 +12,10 @@ import { Imovie } from './movie';
 export class MoviesComponent {
   title: string = 'movie List';
   errorMessage: string ='';
-  listFilter: string = '';
-  listFilterRanking: string = '';
+  public listFilter: string = '';
+  //selectedRanking: string = '';
   imageWidth: number = 80;
-  options = ['Greater than 8B', 'Between 5 - 8', 'Less than 5']
+ 
 
   public movies$: Observable<Imovie[]> | undefined = this.movieService.movie$
   .pipe(
@@ -23,7 +23,11 @@ export class MoviesComponent {
       this.errorMessage = err;
       return EMPTY;
     })
-  )
+  );
+
+  
+
+    
 
   constructor(private movieService: MovieService) {
   }
