@@ -15,7 +15,7 @@ export class FilterPipe implements PipeTransform {
       return []
     };
     return objects.filter((data)=> 
-      data.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
+      data.fullTitle.toLocaleLowerCase().includes(search.toLocaleLowerCase()) ||
       data.year.includes(search)
     );
     }

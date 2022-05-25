@@ -17,7 +17,7 @@ export class MoviesComponent {
   imageWidth: number = 80;
  
 
-  public movies$: Observable<Imovie[]> | undefined = this.movieService.movie$
+  public movies$: Observable<Imovie[]> | undefined = this.movieService.movies$
   .pipe(
     catchError(err => {
       this.errorMessage = err;
@@ -26,9 +26,6 @@ export class MoviesComponent {
   );
 
   
-
-    
-
   constructor(private movieService: MovieService) {
   }
 

@@ -1,35 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+} from '@angular/common/http';
 
-import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 
 import { Iapi } from './movie';
-
-
+import { BoxOfficeService } from '../boxOffice/boxOffice.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MovieService {
 
+ 
   private moviesUrl = 'https://imdb-api.com/en/API/Top250Movies/k_dwqzf26o';
-  
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, 
+              private boxOfficeService: BoxOfficeService) {} //inyecto el servicio que voy a combinar en el constructor
 
-  movie$ = this.http.get<Iapi>(this.moviesUrl)
-  .pipe (
-    tap(data => console.log('Movies: ', JSON.stringify(data))),
-    map(response => response.items),
-    map (response => 
-      response.map(response => ({ 
-        ...response,
-        title: response.title.toUpperCase()}))),
+  movies$ = this.http.get<Iapi>(this.moviesUrl)
+  .pipe(
+    map((movies) => movies.items),
+    map((movies) =>
+      movies.map((movies) => ({
+        ...movies,
+        fullTitle: movies.fullTitle.toUpperCase(),
+     
+      }))
+    ),
     catchError(this.handleError)
-  )
+  );
 
-  
-    
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage = '';
     if (err.error instanceof ErrorEvent) {
@@ -40,14 +43,4 @@ export class MovieService {
     console.error(errorMessage);
     return throwError(errorMessage);
   }
-
-
-
-
-
-
-
 }
-
-
-  

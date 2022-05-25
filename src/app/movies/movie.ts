@@ -1,12 +1,12 @@
 export interface Imovie {
     id: string,
     rank: string,
-    title: string,
     fullTitle: string,
     year: string,
     image: string,
     imDbRating: string,
-    imDbRatingCount:string
+    imDbRatingCount:string,
+    title?: string,
 }
 
 export interface Iapi {
