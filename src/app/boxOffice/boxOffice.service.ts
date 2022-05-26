@@ -16,8 +16,8 @@ export class BoxOfficeService {
 
   boxOffice$ = this.http.get<IapiBox>(this.boxOfficeUrl)
     .pipe(
-    tap(),
-      map((movies) => movies.items),
+      tap(data => console.log('boxoffice: ', JSON.stringify(data))),
+      map((boxOffice) => boxOffice.items),
       catchError(this.handleError)
     );
 

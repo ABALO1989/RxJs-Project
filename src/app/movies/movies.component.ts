@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { catchError, EMPTY, Observable } from 'rxjs';
+import { catchError, EMPTY, merge, Observable } from 'rxjs';
 import { MovieService } from './movie.service';
 import { Imovie } from './movie';
+import { BoxOfficeService } from '../boxOffice/boxOffice.service';
+
 
 @Component({
   selector: 'app-movies',
@@ -17,13 +19,15 @@ export class MoviesComponent {
   imageWidth: number = 80;
  
 
-  public movies$: Observable<Imovie[]> | undefined = this.movieService.movies$
+  movies$ = this.movieService.moviesWithBoxOffice$/////importanteeee asociar el observable nuveo de la cmbinacion
   .pipe(
     catchError(err => {
       this.errorMessage = err;
       return EMPTY;
     })
   );
+
+  
 
   
   constructor(private movieService: MovieService) {
